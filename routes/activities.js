@@ -28,4 +28,12 @@ router.post("/create", (req, res) => {
     .catch(error => next(error));
 });
 
+// POST route to delete an activity from the database
+router.post("/activities/:activityId/delete", isLoggedIn, (req, res, next) => {
+  const { activityId } = req.params;
+  Activity.findByIdAndDelete(activityId)
+    .then(() => res.redirect("activities/list"))
+    .catch((error) => next(error));
+});
+
 module.exports = router;

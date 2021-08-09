@@ -1,0 +1,33 @@
+<h2>Activity Details</h2>
+<div class="details">
+    <img src="/images/riding.jpg" class="image"></img>
+    <br><br>
+    <label class="editLabel"> Title:
+        {{activity.description}}    
+    </label>
+
+    <label class="editLabel"> Description:
+        {{activity.description}}
+    </label>
+
+    <label class="editLabel"> Meeting Point:
+        {{activity.meetingPoint}}
+    </label>
+
+    <label class="editLabel"> Start Date:
+        {{activity.startDate}}
+    </label>
+    
+    <label class="editLabel"> Contact Person:
+        {{activity.author.username}}
+    </label>
+
+    <label class="editLabel"> Attendants:
+        {{#each activity.attendants}}
+            {{username}}
+        {{/each}}
+    </label>
+
+</div>
+
+<a href="/activities/list">Back To List</a>

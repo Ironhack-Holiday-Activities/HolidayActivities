@@ -9,18 +9,17 @@
 
     <div class="list">
         {{#each activities}}
-            <div class="activity">
-            {{title}}
-            {{description}}
-            {{author.username}}
-            {{meetingPoint}}
-
-            <a href="/details">Details</a>
-            <a href="/activities/{{_id}}/edit">Edit</a>
             <form action="/activities/{{id}}/delete" method="POST">
+                {{title}}
+                {{description}}
+                {{author.username}}
+                {{meetingPoint}}
+
+                <a href="/activities/{{_id}}/details">Details</a>
+                <a href="/activities/{{_id}}/edit">Edit</a>
+                <a href="/activities/{{_id}}/book">Book</a>
                 <button>Delete</button>
             </form>
-            </div>
         {{/each}}
     </div>
 </div>

@@ -9,9 +9,38 @@ const Activity = require("../models/Activity.model");
 router.get("/list", (req, res) => {
     Activity.find().populate('author') 
     .then((activitiesFromDB) => {
-      console.log("list"+ (activitiesFromDB));
       res.render("activities/list", {activities: activitiesFromDB});
     });
+});
+
+router.get("/:activityId/details", (req, res) => {
+  const { activityId } = req.params;
+  Activity.findById(activityId).populate('author attendants')
+  .then (activityFromDB => {
+    console.log("Details for" + activityFromDB);
+    res.render("activities/details", { activity: activityFromDB });
+  })
+});
+
+router.get("/:activityId/book", (req, res, next) => {
+  const { activityId } = req.params;
+  let user = req.session.user;
+
+  Activity.findById(activityId).then(activityToEdit => {
+    if(!activityToEdit.attendants.contains(user)) {
+      activityToEdit.attendants.push(user);
+      console.log("Activity Booked "+activityToEdit);
+      Activity.findByIdAndUpdate(activityId, activityToEdit).then(editedActivity => {
+        res.redirect('/activities/list');
+      })
+    } else {
+      console.log("User has allready booked");
+    }
+  })
+    .catch(error => {
+      //Handle Create Error 
+      //next(error);
+    })
 });
 
 router.get("/create", (req, res) => {

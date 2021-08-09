@@ -57,3 +57,12 @@ h2 {
   font-size: 20px;
   font-weight: bold;
 }
+
+.details {
+  display: flex;
+  flex-direction: column;
+}
+
+.image {
+  width: 50%;
+}

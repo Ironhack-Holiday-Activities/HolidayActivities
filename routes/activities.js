@@ -43,6 +43,38 @@ router.post("/create", (req, res, next) => {
         })
 });
 
+// POST route to edit an activity from the database
+router.get("/:activityId/edit", (req, res) => {
+  const { activityId } = req.params;
+  Activity.findById(activityId)
+  .then (activityToEdit => {
+    res.render("activities/edit", { activity: activityToEdit });
+  })
+});
+
+router.post("/:activityId/edit", (req, res, next) => {
+  const { activityId } = req.params;
+  let user = req.session.user;
+
+  const {title, description, startDate, meetingPoint} = req.body
+  
+  Activity.findByIdAndUpdate(activityId, {
+    title,
+    description,
+    startDate,
+    meetingPoint,
+  })
+    .then((activityFromDB) => {
+      console.log(activityFromDB.id);
+      res.redirect("/activities/list");
+    })
+    .catch((error) => {
+      //Handle Edit Error
+      next(error);
+    });
+});
+
+
 // POST route to delete an activity from the database
 router.post("/:activityId/delete", isLoggedIn, (req, res, next) => {
   const { activityId } = req.params;

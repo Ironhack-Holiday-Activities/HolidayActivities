@@ -1,16 +1,23 @@
+<nav class="nav">
+    <a href="/activities/list">List</a>
+    <a href="/activities/create">Create</a>
+    <a href="/auth/logout">Logout</a>
+</nav>
+
 <title>Acivities List</title>
-<h2>Acivities List</h2>
+<div class="list-content">
+    <h2>Acivities List</h2>
 
-<div class="list">
-    {{#each activities}}
-        {{title}}
-        {{description}}
-        {{author.username}}
-        {{meetingPoint}}
+    <div class="list">
+        {{#each activities}}
+            {{title}}
+            {{description}}
+            {{author.username}}
+            {{meetingPoint}}
 
-        <a href="/details">Details</a>
-        <a href="/edit">Edit</a>
-    {{/each}}
+            <a href="/details">Details</a>
+            <a href="/edit">Edit</a>
+            <a href="/delete">Delete</a>
+        {{/each}}
+    </div>
 </div>
-
-<a href="/">Back To Home</a>

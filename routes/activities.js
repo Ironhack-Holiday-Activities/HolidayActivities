@@ -6,7 +6,12 @@ const isLoggedIn = require("../middleware/isLoggedIn");
 const User = require("../models/User.model");
 const Activity = require("../models/Activity.model");
 
-router.get("/list", isLoggedIn, (req, res) => {
-    let activitiesList = Activity.find();
-    res.render("activities/list", {activities: activitiesList});
+router.get("/list", (req, res) => {
+    Activity.find().populate('author') 
+    .then((activitiesFromDB) => {
+      console.log("list"+ (activitiesFromDB));
+      res.render("activities/list", {activities: activitiesFromDB});
+    });
 });
+
+module.exports = router;

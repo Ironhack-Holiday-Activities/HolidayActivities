@@ -15,15 +15,6 @@ const Activity = require("../models/Activity.model");
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
-router.get("/list", (req, res) => {
-  Activity.find().populate('author') 
-  .then((activitiesFromDB) => {
-    console.log("list"+ (activitiesFromDB));
-    res.render("activities/list", {activities: activitiesFromDB});
-  });
-  
-});
-
 router.get("/signup", isLoggedOut, (req, res) => {
   res.render("auth/signup");
 });
@@ -31,6 +22,7 @@ router.get("/signup", isLoggedOut, (req, res) => {
 router.post("/signup", isLoggedOut, (req, res) => {
   const { username,email, password } = req.body;
 
+  console.log("signup body"+ JSON.stringify({ username,email, password }));
   if (!username || !email || !password){
     return res
       .status(400)
@@ -73,7 +65,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
         return User.create({
           username,
           email,
-          password: hashedPassword,
+          passwordHash: hashedPassword,
         });
       })
       .then((user) => {
@@ -132,7 +124,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
       }
 
       // If user is found based on the username, check if the in putted password matches the one saved in the database
-      bcrypt.compare(password, user.password).then((isSamePassword) => {
+      bcrypt.compare(password, user.passwordHash).then((isSamePassword) => {
         if (!isSamePassword) {
           return res
             .status(400)

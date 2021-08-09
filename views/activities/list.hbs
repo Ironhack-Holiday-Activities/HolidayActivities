@@ -18,7 +18,9 @@
 
             <a href="/details">Details</a>
             <a href="/edit">Edit</a>
-            <a href="/delete">Delete</a>
+            <form action="/activities/{{id}}/delete" method="POST">
+                <button>Delete</button>
+            </form>
             </div>
         {{/each}}
     </div>

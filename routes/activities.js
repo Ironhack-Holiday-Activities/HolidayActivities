@@ -18,21 +18,39 @@ router.get("/create", (req, res) => {
   res.render("activities/create");
 });
 
-router.post("/create", (req, res) => {
-  const { title, description, startDate, meetingPoint } = req.body;
-  Activity.create({ title, description, startDate, meetingPoint })
+router.post("/create", (req, res, next) => {
+  let user = req.session.user;
+  
+  let objectToCreate = {
+    title: req.body.title,
+    description: req.body.description,
+    startDate: req.body.startDate,
+    meetingPoint: req.body.meetingPoint,
+    //image: req.body.image,
+    author: user
+  }
+
+  console.log(objectToCreate);
+  Activity.create(objectToCreate)
     .then(activityFromDB => {
        console.log(`New Activity created: ${activityFromDB.title}.`)
-       res.redirect('list');  
+       res.redirect('/activities/list');
     })
-    .catch(error => next(error));
+    .catch(error =>
+        {
+          //Handle Create Error 
+          next(error);
+        })
 });
 
 // POST route to delete an activity from the database
-router.post("/activities/:activityId/delete", isLoggedIn, (req, res, next) => {
+router.post("/:activityId/delete", isLoggedIn, (req, res, next) => {
   const { activityId } = req.params;
   Activity.findByIdAndDelete(activityId)
-    .then(() => res.redirect("activities/list"))
+    .then(() => {
+      console.log("Deleted Activity sucessful");
+      res.redirect("/");
+    })
     .catch((error) => next(error));
 });
 

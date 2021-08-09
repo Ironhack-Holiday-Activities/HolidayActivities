@@ -14,4 +14,18 @@ router.get("/list", (req, res) => {
     });
 });
 
+router.get("/create", (req, res) => {
+  res.render("activities/create");
+});
+
+router.post("/create", (req, res) => {
+  const { title, description, startDate, meetingPoint } = req.body;
+  Activity.create({ title, description, startDate, meetingPoint })
+    .then(activityFromDB => {
+       console.log(`New Activity created: ${activityFromDB.title}.`)
+       res.redirect('list');  
+    })
+    .catch(error => next(error));
+});
+
 module.exports = router;

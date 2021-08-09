@@ -1,0 +1,29 @@
+<h2>Create a Activity</h2>
+ 
+<form action="/activities/create" method="post">
+    <div class="create">
+        <label class="createLabel"> Title:
+            <input type="text" name="title" />
+        </label>
+        
+        <label class="createLabel"> Description:
+            <textarea name="description" cols="30" rows="4"> </textarea>
+        </label>
+        
+        <label class="createLabel"> Image:
+            <input type="text" name="image" />
+        </label>
+
+        <label class="createLabel"> Start Date:
+            <input type="date" id="start" name="start-date"
+                value="2021-08-09"
+                min="2021-08-09" max="3000-08-09">
+        </label>
+
+        <label class="createLabel"> Meeting Point:
+            <input type="text" name="meeting-point"  />
+        </label>
+    </div>
+ 
+  <button type="submit"> Create </button>
+</form>

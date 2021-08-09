@@ -6,12 +6,19 @@ body {
 
 a {
   color: #00b7ff;
-  margin-right: 1vw;
+  margin-right: 0.5vw;
 }
 
 h1 {
   font-size: 100px;
   color: rgb(85, 193, 243);
+}
+
+h2 {
+  font-size: 50px;
+  color: rgb(85, 193, 243);
+  margin-top: 1vh;
+  margin-bottom: 3vh;
 }
 
 .nav {
@@ -27,4 +34,26 @@ h1 {
 
 .list-content {
   margin-top: 5vh;
+}
+
+.create {
+  display: flex;
+  flex-direction: column;
+  width: 10vw;
+}
+
+.createLabel {
+  width: 5vw;
+  margin-bottom: 2vh;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.activity {
+  margin-bottom: 2vh;
+  font-size: 20px;
+  font-weight: bold;
 }

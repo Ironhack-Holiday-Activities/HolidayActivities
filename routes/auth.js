@@ -9,22 +9,32 @@ const saltRounds = 10;
 
 // Require the User model in order to interact with the database
 const User = require("../models/User.model");
+const Activity = require("../models/Activity.model");
 
 // Require necessary (isLoggedOut and isLiggedIn) middleware in order to control access to specific routes
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
+
+router.get("/list", (req, res) => {
+  Activity.find().populate('author') 
+  .then((activitiesFromDB) => {
+    console.log("list"+ (activitiesFromDB));
+    res.render("activities/list", {activities: activitiesFromDB});
+  });
+  
+});
 
 router.get("/signup", isLoggedOut, (req, res) => {
   res.render("auth/signup");
 });
 
 router.post("/signup", isLoggedOut, (req, res) => {
-  const { username, password } = req.body;
+  const { username,email, password } = req.body;
 
-  if (!username) {
+  if (!username || !email || !password){
     return res
       .status(400)
-      .render("auth/signup", { errorMessage: "Please provide your username." });
+      .render("auth/signup", { errorMessage: "All fields are mandatory." });
   }
 
   if (password.length < 8) {
@@ -62,6 +72,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
         // Create a user and save it in the database
         return User.create({
           username,
+          email,
           password: hashedPassword,
         });
       })

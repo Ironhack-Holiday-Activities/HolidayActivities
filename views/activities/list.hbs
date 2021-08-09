@@ -1,0 +1,16 @@
+<title>Acivities List</title>
+<h2>Acivities List</h2>
+
+<div class="list">
+    {{#each activities}}
+        {{title}}
+        {{description}}
+        {{author.username}}
+        {{meetingPoint}}
+
+        <a href="/details">Details</a>
+        <a href="/edit">Edit</a>
+    {{/each}}
+</div>
+
+<a href="/">Back To Home</a>

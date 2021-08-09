@@ -25,6 +25,6 @@ const activitySchema = new Schema(
     timestamps: true,
   }
 );
-const User = model("User", userSchema);
+const Activity = model("Activity", activitySchema);
 
-module.exports = User;
+module.exports = Activity;

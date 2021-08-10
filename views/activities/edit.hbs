@@ -1,6 +1,6 @@
 <h2>Edit an Activity</h2>
  
-<form action="/activities/{{activity._id}}/edit" method="post">
+<form action="/activities/{{activity._id}}/edit" method="post" enctype="multipart/form-data">
     <div class="edit">
         <label class="editLabel"> Title:
             <input type="text" name="title" value={{activity.title}} />
@@ -8,10 +8,6 @@
         
         <label class="editLabel"> Description:
             <textarea name="description" cols="30" rows="4"> </textarea>
-        </label>
-        
-        <label class="editLabel"> Image:
-            <input id="fileElem" name="image" type="file" size="50" accept="image/*" value={{activity.image}}> 
         </label>
 
         <label class="editLabel"> Start Date:
@@ -26,7 +22,6 @@
 
         <label>Image:
           <input type="file" name="activity-image" class="form-control-file" />
-          <input type="text" name="existingImage" hidden value="{{activity.imageUrl}}">
         </label>
     </div>
   <button type="submit"> Edit </button>

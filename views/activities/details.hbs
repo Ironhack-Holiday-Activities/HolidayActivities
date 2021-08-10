@@ -2,7 +2,9 @@
 
 
 <div class="details">
-    <img src="{{activity.imageUrl}}" alt="Image" class="image" />
+    {{#if activity.imageUrl}}
+    <img src="{{activity.imageUrl}}" alt="{{activity.title}}" />
+    {{/if}}
     <br><br>
 
     <label class="editLabel"> Title:

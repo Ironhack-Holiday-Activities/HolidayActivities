@@ -1,29 +1,33 @@
 const router = require("express").Router();
 const mongoose = require("mongoose");
 const isLoggedIn = require("../middleware/isLoggedIn");
-// ********* require fileUploader in order to use it *********
-const fileUploader = require('../config/cloudinary.config');
+
+// Require fileUploader in order to use it
+const fileUploader = require("../config/cloudinary.config");
 
 // Require the User model in order to interact with the database
 const User = require("../models/User.model");
 const Activity = require("../models/Activity.model");
 
+// To list all the activities
 router.get("/list", (req, res) => {
-    Activity.find().populate('author') 
+    Activity.find().populate("author") 
     .then((activitiesFromDB) => {
       res.render("activities/list", {activities: activitiesFromDB});
     });
 });
 
+// To show details of single activity
 router.get("/:activityId/details", (req, res) => {
   const { activityId } = req.params;
-  Activity.findById(activityId).populate('author attendants')
+  Activity.findById(activityId).populate("author attendants")
   .then (activityFromDB => {
     console.log("Details for" + activityFromDB);
     res.render("activities/details", { activity: activityFromDB });
-  })
+  });
 });
 
+// To book activity
 router.post("/:activityId/book", (req, res, next) => {
   let user = req.session.user;
   const { activityId } = req.params;
@@ -40,11 +44,12 @@ router.post("/:activityId/book", (req, res, next) => {
     });
 });
 
+// To create an activity
 router.get("/create", (req, res) => {
   res.render("activities/create");
 });
 
-router.post("/create", fileUploader.single('activity-image'), (req, res, next) => {
+router.post("/create", fileUploader.single("activity-image"), (req, res, next) => {
   let user = req.session.user;
   
   let objectToCreate = {
@@ -54,42 +59,42 @@ router.post("/create", fileUploader.single('activity-image'), (req, res, next) =
     meetingPoint: req.body.meetingPoint,
     author: user.attendants, 
     imageUrl: req.file.path
-  }
+  };
 
-  console.log(req.file);
   Activity.create(objectToCreate)
     .then(activityFromDB => {
-       console.log(`New Activity created: ${activityFromDB.title}.`)
-       //res.redirect('/activities/list');
+       console.log(`New Activity created: ${activityFromDB.title}.`);
+       res.redirect("/activities/list");
     })
     .catch(error =>
         {
           //Handle Create Error 
           next(error);
-        })
+        });
 });
 
-// POST route to edit an activity from the database
+// To edit an activity 
 router.get("/:activityId/edit", (req, res) => {
   const { activityId } = req.params;
   Activity.findById(activityId)
   .then (activityToEdit => {
     res.render("activities/edit", { activity: activityToEdit });
-  })
+  });
 });
 
-router.post("/:activityId/edit", (req, res, next) => {
+router.post("/:activityId/edit", fileUploader.single("activity-image"), (req, res, next) => {
   const { activityId } = req.params;
   let user = req.session.user;
 
-  const {title, description, startDate, meetingPoint} = req.body
+  const {title, description, startDate, meetingPoint} = req.body;
   
-  Activity.findByIdAndUpdate(activityId, {
-    title,
-    description,
-    startDate,
-    meetingPoint,
-  })
+  const objectToEdit = {title, description, startDate, meetingPoint};
+
+  if (req.file){
+    objectToEdit.imageUrl = req.file.path;
+  }
+  
+  Activity.findByIdAndUpdate(activityId, objectToEdit)
     .then((activityFromDB) => {
       console.log(activityFromDB.id);
       res.redirect("/activities/list");
@@ -101,7 +106,7 @@ router.post("/:activityId/edit", (req, res, next) => {
 });
 
 
-// POST route to delete an activity from the database
+// To delete an activity 
 router.post("/:activityId/delete", isLoggedIn, (req, res, next) => {
   const { activityId } = req.params;
   Activity.findByIdAndDelete(activityId)

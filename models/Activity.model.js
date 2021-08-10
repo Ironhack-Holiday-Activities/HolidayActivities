@@ -1,4 +1,6 @@
 const { Schema, model } = require("mongoose");
+// ********* require fileUploader in order to use it *********
+const fileUploader = require('../config/cloudinary.config');
 
 const activitySchema = new Schema(
   {
@@ -12,7 +14,7 @@ const activitySchema = new Schema(
         type: String,
         trim: true
     },
-    image: {
+    imageUrl: {
         type: String,
         trim: true
     },

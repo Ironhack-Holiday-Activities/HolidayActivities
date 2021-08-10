@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const mongoose = require("mongoose");
 const isLoggedIn = require("../middleware/isLoggedIn");
+// ********* require fileUploader in order to use it *********
+const fileUploader = require('../config/cloudinary.config');
 
 // Require the User model in order to interact with the database
 const User = require("../models/User.model");
@@ -42,7 +44,7 @@ router.get("/create", (req, res) => {
   res.render("activities/create");
 });
 
-router.post("/create", (req, res, next) => {
+router.post("/create", fileUploader.single('activity-image'), (req, res, next) => {
   let user = req.session.user;
   
   let objectToCreate = {
@@ -50,15 +52,15 @@ router.post("/create", (req, res, next) => {
     description: req.body.description,
     startDate: req.body.startDate,
     meetingPoint: req.body.meetingPoint,
-    //image: req.body.image,
-    author: user
+    author: user.attendants, 
+    imageUrl: req.file.path
   }
 
-  console.log(objectToCreate);
+  console.log(req.file);
   Activity.create(objectToCreate)
     .then(activityFromDB => {
        console.log(`New Activity created: ${activityFromDB.title}.`)
-       res.redirect('/activities/list');
+       //res.redirect('/activities/list');
     })
     .catch(error =>
         {

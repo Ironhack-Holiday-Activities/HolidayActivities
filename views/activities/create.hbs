@@ -1,6 +1,6 @@
 <h2>Create an Activity</h2>
  
-<form action="/activities/create" method="post">
+<form action="/activities/create" method="post" enctype="multipart/form-data">
     <div class="create">
         <label class="createLabel"> Title:
             <input type="text" name="title" />
@@ -10,10 +10,6 @@
             <textarea name="description" cols="30" rows="4"> </textarea>
         </label>
         
-        <label class="createLabel"> Image:
-            <input id="fileElem" name="image" type="file" size="50" accept="image/*"> 
-        </label>
-
         <label class="createLabel"> Start Date:
             <input type="date" id="start" name="startDate"
                 value="2021-08-09"
@@ -22,6 +18,10 @@
 
         <label class="createLabel"> Meeting Point:
             <input type="text" name="meetingPoint"  />
+        </label>
+
+        <label> File
+            <input type="file" name="activity-image"/>
         </label>
     </div>
  

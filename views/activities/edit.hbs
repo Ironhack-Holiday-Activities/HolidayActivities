@@ -23,6 +23,11 @@
         <label class="editLabel"> Meeting Point:
             <input type="text" name="meetingPoint" value={{activity.meetingPoint}} />
         </label>
+
+        <label>Image:
+          <input type="file" name="activity-image" class="form-control-file" />
+          <input type="text" name="existingImage" hidden value="{{activity.imageUrl}}">
+        </label>
     </div>
   <button type="submit"> Edit </button>
 </form>

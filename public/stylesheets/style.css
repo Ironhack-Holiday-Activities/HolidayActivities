@@ -66,3 +66,24 @@ h2 {
 .image {
   width: 50%;
 }
+
+.booking {
+  display: flex;
+  flex-direction: column;
+}
+
+.booking button {
+  width: 10vw;
+}
+
+.booking label {
+  width: 15vw;
+}
+
+.list button {
+  width: 10vw;
+}
+
+.attendants {
+  visibility: none;
+}

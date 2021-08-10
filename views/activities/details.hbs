@@ -1,9 +1,12 @@
 <h2>Activity Details</h2>
+
+
 <div class="details">
     <img src="/images/riding.jpg" class="image"></img>
     <br><br>
+
     <label class="editLabel"> Title:
-        {{activity.description}}    
+        {{activity.title}}    
     </label>
 
     <label class="editLabel"> Description:
@@ -27,6 +30,10 @@
             {{username}}
         {{/each}}
     </label>
+
+    <form action="/activities/{{activity._id}}/book" method="POST" class="booking">
+        <button type="submit">Book Activity</button>
+    </form>
 
 </div>
 

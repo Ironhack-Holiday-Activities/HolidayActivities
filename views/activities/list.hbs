@@ -9,15 +9,17 @@
 
     <div class="list">
         {{#each activities}}
-            <form action="/activities/{{id}}/delete" method="POST">
-                {{title}}
-                {{description}}
-                {{author.username}}
-                {{meetingPoint}}
+            {{title}}
+            {{description}}
+            {{author.username}}
+            {{meetingPoint}}
 
-                <a href="/activities/{{_id}}/details">Details</a>
-                <a href="/activities/{{_id}}/edit">Edit</a>
-                <a href="/activities/{{_id}}/book">Book</a>
+            <a href="/activities/{{_id}}/details">Details</a>
+            <form action="/activities/{{_id}}/book" method="POST" class="booking">
+                <button type="submit">Book Activity</button>
+            </form>
+            <a href="/activities/{{_id}}/edit">Edit</a>
+            <form action="/activities/{{id}}/delete" method="POST"></form>
                 <button>Delete</button>
             </form>
         {{/each}}

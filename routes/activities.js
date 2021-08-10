@@ -22,25 +22,20 @@ router.get("/:activityId/details", (req, res) => {
   })
 });
 
-router.get("/:activityId/book", (req, res, next) => {
-  const { activityId } = req.params;
+router.post("/:activityId/book", (req, res, next) => {
   let user = req.session.user;
+  const { activityId } = req.params;
+  console.log("Activity Id "+activityId);
+  console.log("User "+ JSON.stringify(user));
 
-  Activity.findById(activityId).then(activityToEdit => {
-    if(!activityToEdit.attendants.contains(user)) {
-      activityToEdit.attendants.push(user);
-      console.log("Activity Booked "+activityToEdit);
-      Activity.findByIdAndUpdate(activityId, activityToEdit).then(editedActivity => {
-        res.redirect('/activities/list');
-      })
-    } else {
-      console.log("User has allready booked");
-    }
-  })
-    .catch(error => {
-      //Handle Create Error 
-      //next(error);
+  User.findById(user._id)
+    .then( userFromDb => {
+      return Activity.findByIdAndUpdate(activityId, { $push: { attendants: userFromDb._id } });
     })
+    .catch( err => {
+      console.log("error booking activity: ", err);
+      next(err);
+    });
 });
 
 router.get("/create", (req, res) => {

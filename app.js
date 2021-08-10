@@ -21,14 +21,14 @@ require("./config")(app);
 const projectName = "HolidayActivities";
 const capitalized = (string) => string[0].toUpperCase() + string.slice(1).toLowerCase();
 
-app.locals.title = 'Holiday Activities'
+app.locals.title = "Holiday Activities";
 
 // 👇 Start handling routes here
 const index = require("./routes/index");
 app.use("/", index);
 
 const authRoutes = require("./routes/auth");
-app.use("/auth", authRoutes);
+app.use("/", authRoutes);
 
 const activitiesRoutes = require("./routes/activities");
 app.use("/activities", activitiesRoutes);

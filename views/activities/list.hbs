@@ -1,7 +1,10 @@
 <nav class="nav">
     <a href="/activities/list">List</a>
     <a href="/activities/create">Create</a>
-    <a href="/auth/logout">Logout</a>
+    <a href="/signup">Signup</a>
+    <a href="/login">Login</a>
+    <a href="/logout">Logout</a>
+    <a href="/">Home Page</a>
 </nav>
 <title>Acivities List</title>
 <div class="list-content">
@@ -19,9 +22,10 @@
                 <button type="submit">Book Activity</button>
             </form>
             <a href="/activities/{{_id}}/edit">Edit</a>
-            <form action="/activities/{{id}}/delete" method="POST"></form>
+            <form action="/activities/{{_id}}/delete" method="POST">
                 <button>Delete</button>
             </form>
+            <hr>
         {{/each}}
     </div>
 </div>

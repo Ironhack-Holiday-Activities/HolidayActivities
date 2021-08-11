@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 // ********* require fileUploader in order to use it *********
-const fileUploader = require('../config/cloudinary.config');
+const fileUploader = require("../config/cloudinary.config");
 
 const activitySchema = new Schema(
   {
@@ -20,7 +20,7 @@ const activitySchema = new Schema(
     },
     startDate: Date,
     meetingPoint: String,
-    attendants: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+    attendants: [{ type: Schema.Types.ObjectId, ref: "User" }],
     author: { type: Schema.Types.ObjectId, ref: "User" }
   },
   {

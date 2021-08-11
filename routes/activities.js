@@ -25,9 +25,16 @@ router.get("/:activityId/details", isLoggedIn, (req, res) => {
   const { activityId } = req.params;
   Activity.findById(activityId)
     .populate("author attendants")
-    .then((activityFromDB) => {
-      console.log("Details for" + activityFromDB);
-      res.render("activities/details", { user: userInSession, activity: activityFromDB });
+    .then((activityDetails) => {
+      let date = new Date(activityDetails.startDate);
+      let options = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      };
+      activityDetails.formattedDate = date.toLocaleString("en-US", options);
+      res.render("activities/details", { user: userInSession, activity: activityDetails });
     });
 });
 

@@ -17,21 +17,21 @@ const isLoggedIn = require("../middleware/isLoggedIn");
 
 //////////// S I G N U P ///////////
 
-router.get("/signup", isLoggedOut, (req, res) => {
-  res.render("auth/signup");
+router.get("/login", isLoggedOut, (req, res) => {
+  res.render("auth/login");
 });
 
 router.post("/signup", isLoggedOut, (req, res) => {
   const { username, email, password } = req.body;
   // Make sure uer fills all mandatory fields
   if (!username || !email || !password) {
-    res.render("auth/signup", { errorMessage: "All fields are mandatory." });
+    res.render("auth/login", { errorMessage: "All fields are mandatory." });
     return;
   }
   // Make sure passwords are strong
   const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
   if (!regex.test(password)) {
-    res.status(500).render("auth/signup", {
+    res.status(500).render("auth/login", {
       errorMessage:
         "Password needs to have at least 8 chars and must contain at least one number, one lowercase and one uppercase letter.",
     });
@@ -44,7 +44,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
     if (found) {
       res
         .status(400)
-        .render("auth/signup", { errorMessage: "Username already taken." });
+        .render("auth/login", { errorMessage: "Username already taken." });
       return;
     }
   });
@@ -70,11 +70,11 @@ router.post("/signup", isLoggedOut, (req, res) => {
         if (error instanceof mongoose.Error.ValidationError) {
           res
             .status(500)
-            .render("auth/signup", { errorMessage: error.message });
+            .render("auth/login", { errorMessage: error.message });
         }
         // Make sure no duplicated data
         else if (error.code === 11000) {
-          res.status(500).render("auth/signup", {
+          res.status(500).render("auth/login", {
             errorMessage:
               "Username and email need to be unique. Either username or email is already used.",
           });
@@ -147,7 +147,7 @@ router.get("/logout", isLoggedIn, (req, res) => {
     if (err) {
       next(err);
     } else {
-      res.redirect("/");
+      res.redirect("/login");
     }
   });
 });

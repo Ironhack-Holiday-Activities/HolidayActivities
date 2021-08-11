@@ -8,10 +8,10 @@ a {
   color: #00b7ff;
   margin-right: 0.5vw;
 }
-
+/* To do */
 h1 {
-  font-size: 100px;
-  color: rgb(85, 193, 243);
+  
+  color: black;
 }
 
 h2 {
@@ -24,6 +24,11 @@ h2 {
 .nav {
   font-size: 30px;
   margin-right: 2vh;
+}
+
+.nav label {
+  font-size: 16px;
+  margin-right:2vh;
 }
 
 .title-container {
@@ -86,4 +91,29 @@ h2 {
 
 .attendants {
   visibility: none;
+}
+/* login page */
+
+.login-form {
+  display:flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  font-size: 26px;
+}
+
+.login-form label {
+  background-color: brown;
+  padding-top: 1vh;
+}
+
+.login-form button {
+  width: 10vw;
+  margin-top: 3vh;
+}
+
+.login-form input {
+  height: 26px;
+  margin-bottom: 3vh;
+  background-color: blue;
 }

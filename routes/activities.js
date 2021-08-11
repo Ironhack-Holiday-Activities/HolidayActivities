@@ -20,12 +20,13 @@ router.get("/list", (req, res) => {
 
 // To show details of single activity
 router.get("/:activityId/details", (req, res) => {
+  let userInSession = req.session.user;
   const { activityId } = req.params;
   Activity.findById(activityId)
     .populate("author attendants")
     .then((activityFromDB) => {
       console.log("Details for" + activityFromDB);
-      res.render("activities/details", { activity: activityFromDB });
+      res.render("activities/details", { user: userInSession, activity: activityFromDB });
     });
 });
 
@@ -50,8 +51,9 @@ router.post("/:activityId/book", isLoggedIn, (req, res, next) => {
 });
 
 // To create an activity
-router.get("/create", (req, res) => {
-  res.render("activities/create");
+router.get("/create", isLoggedIn, (req, res) => {
+  let userInSession = req.session.user;
+  res.render("activities/create", { user: userInSession });
 });
 
 router.post(

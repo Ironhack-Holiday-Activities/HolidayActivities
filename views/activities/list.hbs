@@ -2,27 +2,27 @@
 <div class="list-content">
     <div class="list">
         {{#each activities}}
-            <div class="card">
+        <div class="card">
             {{#if imageUrl}}
-                <img src="{{imageUrl}}" alt="{{activity.title}}" />
+            <img src="{{imageUrl}}" alt="{{activity.title}}" />
             {{/if}}
             <h5>{{title}}</h5>
             <div class="card-body">
                 <div class="card-btn">
-                <a href="/activities/{{_id}}/details">Details</a>
-                <form action="/activities/{{_id}}/book" method="POST" class="booking">
-                    <button type="submit">Join</button>
-                </form>
+                    <a href="/activities/{{_id}}/details">Details</a>
+                    <form action="/activities/{{_id}}/book" method="POST" class="booking">
+                        <button type="submit">Join</button>
+                    </form>
                 </div>
-                <div class="card-link">
-                <a href="/activities/{{_id}}/edit">Edit</a>
-                <form action="/activities/{{_id}}/delete" method="POST">
-                    <button type="submit">Delete</button>
-                </form>
-                </div>
+                <div class="card-btn">
+                    <a href="/activities/{{_id}}/edit">Edit</a>
+                    <form action="/activities/{{_id}}/delete" method="POST">
+                        <button type="submit">Delete</button>
+                    </form>
                 </div>
             </div>
-            </div>
-            {{/each}}
+        </div>
+        {{/each}}
     </div>
+</div>
 </div>

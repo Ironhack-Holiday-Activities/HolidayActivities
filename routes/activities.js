@@ -30,7 +30,7 @@ router.get("/:activityId/details", (req, res) => {
 });
 
 // To book activity
-router.post("/:activityId/book", (req, res, next) => {
+router.post("/:activityId/book", isLoggedIn, (req, res, next) => {
   let user = req.session.user;
   const { activityId } = req.params;
   console.log("Activity Id " + activityId);
@@ -42,6 +42,7 @@ router.post("/:activityId/book", (req, res, next) => {
         $push: { attendants: userFromDb._id },
       });
     })
+    .then(() => res.redirect(`/activities/${activityId}/details`))
     .catch((err) => {
       console.log("error booking activity: ", err);
       next(err);

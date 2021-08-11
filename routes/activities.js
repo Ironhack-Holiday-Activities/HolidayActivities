@@ -75,7 +75,7 @@ router.post(
     Activity.create(objectToCreate)
       .then((activityFromDB) => {
         console.log(`New Activity created: ${activityFromDB.title}.`);
-        res.redirect("/activities/list");
+        res.redirect("/");
       })
       .catch((error) => {
         //Handle Create Error
@@ -126,7 +126,7 @@ router.post("/:activityId/delete", isLoggedIn, (req, res, next) => {
   Activity.findByIdAndDelete(activityId)
     .then(() => {
       console.log("Deleted Activity sucessful");
-      res.redirect("/activities/list");
+      res.redirect("/");
     })
     .catch((error) => next(error));
 });

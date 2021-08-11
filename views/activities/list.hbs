@@ -4,19 +4,28 @@
 
     <div class="list">
         {{#each activities}}
-            {{title}}
-            {{description}}
-            {{author.username}}
-            {{meetingPoint}}
-
-            <a href="/activities/{{_id}}/details">Details</a>
-            <form action="/activities/{{_id}}/book" method="POST" class="booking">
-                <button type="submit">Book Activity</button>
-            </form>
-            <a href="/activities/{{_id}}/edit">Edit</a>
-            <form action="/activities/{{_id}}/delete" method="POST">
-                <button>Delete</button>
-            </form>
+            <div class="card">
+            {{#if imageUrl}}
+                <img class= "activity-image-list" src="{{imageUrl}}" alt="{{activity.title}}" />
+            {{/if}}
+            <div class="card-body">
+                <h5 class="card-title">{{title}}</h5>
+            </div>
+            <div class="card-body">
+                <div>
+                <a class="activity-link" href="/activities/{{_id}}/details">Details</a>
+                <form class="list-form" action="/activities/{{_id}}/book" method="POST" class="booking">
+                    <button type="submit">Join</button>
+                </form>
+                </div>
+                <div>
+                <a class="activity-link" href="/activities/{{_id}}/edit">Edit</a>
+                <form class="list-form" action="/activities/{{_id}}/delete" method="POST">
+                    <button type="submit">Delete</button>
+                </form>
+                </div>
+            </div>
+            </div>
             <hr>
         {{/each}}
     </div>

@@ -41,11 +41,7 @@ h2 {
   margin-top: 5vh;
 }
 
-.create {
-  display: flex;
-  flex-direction: column;
-  width: 10vw;
-}
+
 
 .createLabel {
   width: 5vw;
@@ -54,7 +50,7 @@ h2 {
 
 .list {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .activity {
@@ -86,7 +82,7 @@ h2 {
 }
 
 .list button {
-  width: 10vw;
+  width: 11vw;
 }
 
 .attendants {
@@ -120,4 +116,72 @@ h2 {
 
 .activity-image {
   max-width: 30%;
+}
+
+.card {
+  height: 50vh;
+  width: 25vw;
+  padding: 3vw;
+  background-color: rgb(146, 146, 146);
+}
+
+.create-form .edit-field{
+  height: 70vh;
+  width: 80vw;
+}
+
+.create {
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  margin-left: 30vw;
+}
+
+.create label {
+  width: 20vw;
+  text-align: left;
+}
+
+.create-button {
+  align-self: auto;
+  margin-top: 2vh;
+}
+
+.description {
+  background-color: #eee;
+  width: 20vw;
+}
+
+.activity-image-list {
+  width: 19vw;
+}
+
+.list-form {
+  background-color: transparent;
+  padding: 0;
+  align-items: flex-start !important;
+}
+
+.activity-link {
+  width: 11vw;
+  border-radius: 20px;
+  border: 1px solid #FF4B2B;
+  background-color: #FF4B2B;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+  margin-bottom: 2vh !important;
+}
+
+.card-body {
+  display: flex;
+  height: 8vh;
+}
+
+.edit-field {
+  width: 30vw;
 }

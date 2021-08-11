@@ -1,27 +1,29 @@
 <h2>Edit an Activity</h2>
  
-<form action="/activities/{{activity._id}}/edit" method="post" enctype="multipart/form-data">
+<form class="edit-form" action="/activities/{{activity._id}}/edit" method="post" enctype="multipart/form-data">
     <div class="edit">
         <label class="editLabel"> Title:
-            <input type="text" name="title" value={{activity.title}} />
+            <input class="edit-field" type="text" name="title" value={{activity.title}} />
         </label>
         
         <label class="editLabel"> Description:
-            <textarea name="description" cols="30" rows="4"> </textarea>
+            <div>
+            <textarea class="edit-field" name="description" cols="30" rows="4">{{activity.description}}</textarea>
+            </div>
         </label>
 
         <label class="editLabel"> Start Date:
-            <input type="date" id="start" name="startDate"
+            <input class="edit-field" type="date" id="start" name="startDate"
                 value={{activity.startDate}}
                 min="2021-08-09" max="3000-08-09">
         </label>
 
         <label class="editLabel"> Meeting Point:
-            <input type="text" name="meetingPoint" value={{activity.meetingPoint}} />
+            <input class="edit-field" type="text" name="meetingPoint" value={{activity.meetingPoint}} />
         </label>
 
         <label>Image:
-          <input type="file" name="activity-image" class="form-control-file" />
+          <input class="edit-field" type="file" name="activity-image" class="form-control-file" />
         </label>
     </div>
   <button type="submit"> Edit </button>

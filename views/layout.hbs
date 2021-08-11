@@ -14,19 +14,18 @@
       <div "title-container">
          <h1 class="title">{{title}}</h1>
             </div>
-            {{#if user.username}}
+          
       <nav class="nav">
          
          {{#if user}}
-         <label> Welcome {{user.username}}
+            <label> Welcome {{user.username}}
          {{/if}}
          </label>
          <a href="/">Actitivies List</a>
          <a href="/activities/create">Create</a>
          <a href="/login">Login/Signup</a>
          <a href="/logout">Logout</a>
-      </nav>
-        {{/if}}
+         </nav>
       {{{body}}}
 
       <script src="/js/script.js"></script>

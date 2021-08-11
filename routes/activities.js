@@ -19,8 +19,9 @@ router.get("/list", (req, res) => {
 });
 
 // To show details of single activity
-router.get("/:activityId/details", (req, res) => {
+router.get("/:activityId/details", isLoggedIn, (req, res) => {
   let userInSession = req.session.user;
+  console.log(userInSession);
   const { activityId } = req.params;
   Activity.findById(activityId)
     .populate("author attendants")
@@ -84,10 +85,11 @@ router.post(
 );
 
 // To edit an activity
-router.get("/:activityId/edit", (req, res) => {
+router.get("/:activityId/edit", isLoggedIn, (req, res) => {
+  let userInSession = req.session.user;
   const { activityId } = req.params;
   Activity.findById(activityId).then((activityToEdit) => {
-    res.render("activities/edit", { activity: activityToEdit });
+    res.render("activities/edit", { user: userInSession, activity: activityToEdit });
   });
 });
 

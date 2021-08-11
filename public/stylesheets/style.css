@@ -117,3 +117,7 @@ h2 {
   margin-bottom: 3vh;
   background-color: blue;
 }
+
+.activity-image {
+  max-width: 30%;
+}

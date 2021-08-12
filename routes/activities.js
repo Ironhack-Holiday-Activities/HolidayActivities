@@ -87,26 +87,22 @@ router.post(
               author: userFromDb._id,
               imageUrl: req.file.path,
             };
-
-            Activity.create(objectToCreate)
+    if (user != undefined) {
+      User.findById(user._id)
+        .then((userFromDb) => {
+          objectToCreate.author = userFromDb._id;
+          return Activity.create(objectToCreate);
+        })
               .then((activityFromDB) => {
                 console.log(`New Activity created: ${activityFromDB.title}.`);
                 res.redirect("/");
               })
-              .catch((error) => {
-                res.render("activities/create", {
-                  errorMessage: "Duplicate Title, please enter another Title",
-                });
-              });
-          }
-        })
         .catch((err) => {
-          console.log("error booking activity: ", err);
+          console.log("error creating activity: ", err);
           next(err);
         });
     }
-  }
-);
+  });
 
 // To edit an activity
 router.get("/:activityId/edit", isLoggedIn, (req, res) => {

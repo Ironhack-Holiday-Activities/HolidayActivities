@@ -81,7 +81,6 @@ h5 {
   margin-bottom: 3vh;
 }
 
-
 .image {
   width: 50%;
 }
@@ -90,8 +89,6 @@ h5 {
   display: flex;
   flex-direction: column;
 }
-
-
 
 .booking label {
   width: 15vw;
@@ -235,10 +232,6 @@ h5 {
   width: 20vw;
 }
 
-.edit-field {
-  width: 30vw;
-}
-
 /* create page */
 #create h3 {
   display:flex;
@@ -280,9 +273,17 @@ h5 {
   background: rgba(0,212,255,1);
 }
 
-.create-form .edit-field {
+.create-form {
   height: 70vh;
   width: 80vw;
+}
+
+.edit-field {
+  width: 80%;
+}
+
+.editLabel {
+  width: 100%;
 }
 
 .create input {

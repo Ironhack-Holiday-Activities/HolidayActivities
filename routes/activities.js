@@ -69,26 +69,32 @@ router.post(
   fileUploader.single("activity-image"),
   (req, res, next) => {
     let user = req.session.user;
-
-    let objectToCreate = {
-      title: req.body.title,
-      description: req.body.description,
-      startDate: req.body.startDate,
-      meetingPoint: req.body.meetingPoint,
-      author: user.attendants,
-      imageUrl: req.file.path,
-    };
-
-    Activity.create(objectToCreate)
-      .then((activityFromDB) => {
-        console.log(`New Activity created: ${activityFromDB.title}.`);
-        res.redirect("/");
-      })
-      .catch((error) => {
-        //Handle Create Error
-        next(error);
-      });
-  }
+    User.findById(user._id)
+    .then((userFromDb) => {
+      let objectToCreate = {
+        title: req.body.title,
+        description: req.body.description,
+        startDate: req.body.startDate,
+        meetingPoint: req.body.meetingPoint,
+        author: userFromDb._id,
+        imageUrl: req.file.path,
+      };
+  
+      Activity.create(objectToCreate)
+        .then((activityFromDB) => {
+          console.log(`New Activity created: ${activityFromDB.title}.`);
+          res.redirect("/");
+        })
+        .catch((error) => {
+          //Handle Create Error
+          next(error);
+        });
+    })
+    .catch((err) => {
+      console.log("error booking activity: ", err);
+      next(err);
+    });
+    }
 );
 
 // To edit an activity

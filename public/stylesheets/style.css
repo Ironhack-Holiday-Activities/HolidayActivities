@@ -21,6 +21,10 @@ h2 {
   margin-bottom: 3vh;
 }
 
+h3 {
+  margin-top: 4vh;
+}
+
 h5 {
   color: white;
   font-size: 30px;
@@ -61,7 +65,22 @@ h5 {
 .details {
   display: flex;
   flex-direction: column;
+  background-color: rgba(0,212,255,1);
+  border: 3px solid black;
+  width: 27vw;
+  height: 63vh;
+  color: white;
+  font-size: 25px;
+  margin: auto;
 }
+
+.detail-headline {
+  width: 27vw;
+  margin: auto;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+}
+
 
 .image {
   width: 50%;
@@ -72,9 +91,7 @@ h5 {
   flex-direction: column;
 }
 
-.booking button {
-  width: 10vw;
-}
+
 
 .booking label {
   width: 15vw;
@@ -111,13 +128,14 @@ h5 {
 }
 
 .activity-image {
-  max-width: 30%;
+  max-width: 60%;
+  margin: auto;
 }
 
 /* list page */
 .card {
-  height: 25vw;
-  width: 25vw;
+  width: 33%;
+  /* width: ; */
   background: rgba(0,212,255,1);
   display: flex;
   flex-direction: column;
@@ -130,7 +148,7 @@ h5 {
   display: flex;
   flex-direction: column;
   align-items:flex-end; 
-  height: 10vh !important;
+  /* height: 14vh !important; */
   margin-top: 1vh;
 }
 
@@ -140,8 +158,9 @@ h5 {
 }
 
 .card img {
-  width: 15vw;
+  width: auto;
   padding: 1vh;
+  max-height: 15vw;
   margin-top: 3vh;
 }
 
@@ -160,6 +179,21 @@ h5 {
   margin-top: 2vh;
   display: flex;
   flex-direction: row;
+}
+
+.bookingButton {
+  border-radius: 16px;
+  border: 1px solid #ff4b2b;
+  background-color: #ff4b2b;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: bold;
+  width: 8vw;
+  height: 4vh;
+  letter-spacing: 1px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
 }
 
 .card-btn a {
@@ -197,7 +231,7 @@ h5 {
 }
 
 .description {
-  background-color: #eee;
+  background-color: white;
   width: 20vw;
 }
 
@@ -265,4 +299,9 @@ h5 {
 
 .login-hello {
   color: white !important;
+}
+
+.detailsLabel {
+  margin-bottom: 2vh;
+  margin-left: 5vw;
 }

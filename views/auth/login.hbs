@@ -13,13 +13,20 @@
 	</div>
 	<div class="form-container sign-in-container">
 		<form action="/login" method="POST">
+			<div class="signin-container">
 			<h1 class="login-headline">Sign in</h1>	
-			<input type="text" name="username" autocomplete="username" placeholder="Username" />
+				<input  type="text" name="username" autocomplete="username" placeholder="Username" />
 			<input type="password" name="password" autocomplete="current-password" placeholder="Password" />
 			<button type="submit">Sign In</button>
+				<div class="errorMessage">					
+					<p class="error">
     {{#if errorMessage}}
-      <p class="error">{{errorMessage}}</p>
+							{{errorMessage}}
     {{/if}}
+					</p>
+		
+				</div>
+			</div>
 		</form>
 	</div>
 	<div class="overlay-container">

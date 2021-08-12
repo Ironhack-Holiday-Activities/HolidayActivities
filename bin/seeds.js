@@ -24,3 +24,6 @@ Activity.create({
       attendants:[],
       author: '6110f42e911ccf668c52a9ba'
 })
+
+console.log("Seeds Created");
+mongoose.disconnect();

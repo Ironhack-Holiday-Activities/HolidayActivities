@@ -71,6 +71,7 @@ router.post(
     let user = req.session.user;
     User.findById(user._id)
     .then((userFromDb) => {
+      if(userFromDb) {
       let objectToCreate = {
         title: req.body.title,
         description: req.body.description,
@@ -89,6 +90,7 @@ router.post(
           //Handle Create Error
           next(error);
         });
+      }
     })
     .catch((err) => {
       console.log("error booking activity: ", err);

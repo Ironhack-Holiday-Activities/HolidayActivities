@@ -191,6 +191,7 @@ h5 {
   text-decoration: none;
   text-transform: uppercase;
   transition: transform 80ms ease-in;
+  margin-left: 10vw;
 }
 
 .card-btn a {

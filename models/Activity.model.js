@@ -7,8 +7,7 @@ const activitySchema = new Schema(
     title: {
       type: String,
       trim: true,
-      required: [true, "A title is required."],
-      unique: true,
+      required: [true, "A title is required."]
     },
     description: {
         type: String,

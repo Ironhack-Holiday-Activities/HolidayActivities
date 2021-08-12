@@ -42,20 +42,26 @@ router.get("/:activityId/details", isLoggedIn, (req, res) => {
 router.post("/:activityId/book", isLoggedIn, (req, res, next) => {
   let user = req.session.user;
   const { activityId } = req.params;
-  console.log("Activity Id " + activityId);
-  console.log("User " + JSON.stringify(user));
 
-  User.findById(user._id)
-    .then((userFromDb) => {
-      return Activity.findByIdAndUpdate(activityId, {
-        $push: { attendants: userFromDb._id },
-      });
-    })
-    .then(() => res.redirect(`/activities/${activityId}/details`))
-    .catch((err) => {
-      console.log("error booking activity: ", err);
-      next(err);
-    });
+  return Activity.findById(activityId).then((activityFromDB) => {
+    console.log("Attendants " + activityFromDB.attendants);
+    if (!activityFromDB.attendants.includes(user._id)) {
+      User.findById(user._id)
+        .then((userFromDb) => {
+          return Activity.findByIdAndUpdate(activityId, {
+            $push: { attendants: userFromDb._id }
+          });
+        })
+        .then(() => res.redirect(`/activities/${activityId}/details`))
+        .catch((err) => {
+          console.log("error booking activity: ", err);
+          next(err);
+        });
+
+    }
+    return;
+  }
+  );
 });
 
 // To create an activity
@@ -65,38 +71,41 @@ router.get("/create", isLoggedIn, (req, res) => {
 });
 
 router.post(
-  "/create",
+  "/create", isLoggedIn, 
   fileUploader.single("activity-image"),
   (req, res, next) => {
     let user = req.session.user;
-    User.findById(user._id)
-    .then((userFromDb) => {
-      if(userFromDb) {
-      let objectToCreate = {
-        title: req.body.title,
-        description: req.body.description,
-        startDate: req.body.startDate,
-        meetingPoint: req.body.meetingPoint,
-        author: userFromDb._id,
-        imageUrl: req.file.path,
-      };
-  
-      Activity.create(objectToCreate)
-        .then((activityFromDB) => {
-          console.log(`New Activity created: ${activityFromDB.title}.`);
-          res.redirect("/");
+    if (user != undefined) {
+      User.findById(user._id)
+        .then((userFromDb) => {
+          if (userFromDb) {
+            let objectToCreate = {
+              title: req.body.title,
+              description: req.body.description,
+              startDate: req.body.startDate,
+              meetingPoint: req.body.meetingPoint,
+              author: userFromDb._id,
+              imageUrl: req.file.path,
+            };
+
+            Activity.create(objectToCreate)
+              .then((activityFromDB) => {
+                console.log(`New Activity created: ${activityFromDB.title}.`);
+                res.redirect("/");
+              })
+              .catch((error) => {
+                res.render("activities/create", {
+                  errorMessage: "Duplicate Title, please enter another Title",
+                });
+              });
+          }
         })
-        .catch((error) => {
-          //Handle Create Error
-          next(error);
+        .catch((err) => {
+          console.log("error booking activity: ", err);
+          next(err);
         });
-      }
-    })
-    .catch((err) => {
-      console.log("error booking activity: ", err);
-      next(err);
-    });
     }
+  }
 );
 
 // To edit an activity

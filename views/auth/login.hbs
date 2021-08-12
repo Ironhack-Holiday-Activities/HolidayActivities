@@ -1,3 +1,7 @@
+<head>
+	<link rel="stylesheet" href="/stylesheets/login.css" />
+</head>
+
 <div class="container" id="container">
 	<div class="form-container sign-up-container">
 		<form action="/signup" method="POST">
@@ -6,6 +10,7 @@
 			<input type="email" name="email" placeholder="Email" />
 			<input type="password" name="password" placeholder="Password" />
 			<button type="submit">Sign Up</button>
+			
     {{#if errorMessage}}
       <p class="error">{{errorMessage}}</p>
     {{/if}}

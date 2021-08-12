@@ -88,17 +88,12 @@ router.post(
               imageUrl: req.file.path,
             };
 
-            Activity.create(objectToCreate)
-              .then((activityFromDB) => {
-                console.log(`New Activity created: ${activityFromDB.title}.`);
-                res.redirect("/");
-              })
-              .catch((error) => {
-                res.render("activities/create", {
-                  errorMessage: "Duplicate Title, please enter another Title",
-                });
-              });
+            return Activity.create(objectToCreate)
           }
+        })
+        .then((activityFromDB) => {
+          console.log(`New Activity created: ${activityFromDB.title}.`);
+          res.redirect("/");
         })
         .catch((err) => {
           console.log("error booking activity: ", err);

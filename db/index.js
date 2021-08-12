@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 
 const MONGO_URI = require("../utils/consts");
 
+console.log("Mogo Uri"+MONGO_URI);
 mongoose
   .connect(MONGO_URI, {
     useNewUrlParser: true,

@@ -1,7 +1,7 @@
 <div class="container" id="container">
 	<div class="form-container sign-up-container">
 		<form action="/signup" method="POST">
-			<h1>Create Account</h1>
+			<h1 class="login-headline">Create Account</h1>
 			<input type="text" name="username" placeholder="Username" />
 			<input type="email" name="email" placeholder="Email" />
 			<input type="password" name="password" placeholder="Password" />
@@ -13,7 +13,7 @@
 	</div>
 	<div class="form-container sign-in-container">
 		<form action="/login" method="POST">
-			<h1>Sign in</h1>	
+			<h1 class="login-headline">Sign in</h1>	
 			<input type="text" name="username" autocomplete="username" placeholder="Username" />
 			<input type="password" name="password" autocomplete="current-password" placeholder="Password" />
 			<button type="submit">Sign In</button>
@@ -25,12 +25,12 @@
 	<div class="overlay-container">
 		<div class="overlay">
 			<div class="overlay-panel overlay-left">
-				<h1>Welcome Back!</h1>
+				<h1 class="login-headline">Welcome Back!</h1>
 				<p>To keep connected with us please login with your username and password</p>
 				<button class="ghost" id="signIn">Sign In</button>
 			</div>
 			<div class="overlay-panel overlay-right">
-				<h1>Hello, Friend!</h1>
+				<h1 class="login-hello">Hello, Friend!</h1>
 				<p>Create an account and start journey with us</p>
 				<button class="ghost" id="signUp">Sign Up</button>
 			</div>

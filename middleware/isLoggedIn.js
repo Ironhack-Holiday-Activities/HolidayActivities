@@ -1,5 +1,6 @@
 module.exports = (req, res, next) => {
   // checks if the user is logged in when trying to access a specific page
+  console.log("Logged in User" + req.session.user);
   if (!req.session.user) {
     return res.redirect("/login");
   }

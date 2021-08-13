@@ -44,7 +44,6 @@ router.post("/:activityId/book", isLoggedIn, (req, res, next) => {
   const { activityId } = req.params;
 
   return Activity.findById(activityId).then((activityFromDB) => {
-    console.log("Attendants " + activityFromDB.attendants);
     if (!activityFromDB.attendants.includes(user._id)) {
       User.findById(user._id)
         .then((userFromDb) => {

@@ -1,6 +1,4 @@
 <div id="create">
-    <h3>Edit an Activity</h2>
-
         <form class="create-form" action="/activities/{{activity._id}}/edit" method="post"
             enctype="multipart/form-data">
             <div class="create">
@@ -10,7 +8,7 @@
 
                 <label class="editLabel"> Description:
                     <div>
-                        <textarea class="edit-field" name="description" cols="30"
+                        <textarea class="description" name="description" cols="30"
                             rows="4">{{activity.description}}</textarea>
                     </div>
                 </label>

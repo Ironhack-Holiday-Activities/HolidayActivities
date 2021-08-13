@@ -1,10 +1,10 @@
-<h2 class="detail-headline">Activity Details</h2>
-
 <div class="details">
     {{#if activity.imageUrl}}
-        <img class= "activity-image" src="{{activity.imageUrl}}" alt="{{activity.title}}" />
+        <img class= "edit-image" src="{{activity.imageUrl}}" alt="{{activity.title}}" />
+    {{else}}
+        <img  class= "edit-image" src="/images/barbecue.png" />
     {{/if}}
-    
+
     <label class="detailsLabel"> Title:
         {{activity.title}}    
     </label>

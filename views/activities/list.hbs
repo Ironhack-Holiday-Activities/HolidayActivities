@@ -4,7 +4,9 @@
         {{#each activities}}
         <div class="card">
             {{#if imageUrl}}
-            <img src="{{imageUrl}}" alt="{{activity.title}}" />
+                <img src="{{imageUrl}}" alt="{{activity.title}}" />
+            {{else}}
+                <img src="/images/barbecue.png" />
             {{/if}}
             <h5>{{title}}</h5>
             <div class="card-body">

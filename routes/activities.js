@@ -75,19 +75,20 @@ router.post(
   fileUploader.single("activity-image"),
   (req, res, next) => {
     let user = req.session.user;
+
     if (user != undefined) {
       User.findById(user._id)
         .then((userFromDb) => {
           if (userFromDb) {
+
             let objectToCreate = {
               title: req.body.title,
               description: req.body.description,
               startDate: req.body.startDate,
               meetingPoint: req.body.meetingPoint,
               author: userFromDb._id,
-              imageUrl: req.file.path,
+              imageUrl: req.file?.path || '',
             };
-
             return Activity.create(objectToCreate)
           }
         })

@@ -97,8 +97,7 @@ router.post(
           res.redirect("/");
         })
         .catch((err) => {
-          console.log("error booking activity: ", err);
-          next(err);
+          console.log("Error Creating the Activity: ", err);
         });
     }
   }

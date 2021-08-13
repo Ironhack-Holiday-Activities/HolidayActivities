@@ -109,7 +109,10 @@ router.get("/:activityId/edit", isLoggedIn, (req, res) => {
   let userInSession = req.session.user;
   const { activityId } = req.params;
   Activity.findById(activityId).then((activityToEdit) => {
-    res.render("activities/edit", { user: userInSession, activity: activityToEdit });
+        //TODo Extract Method
+        let date = new Date(activityToEdit.startDate);
+        let dateString = date.toISOString().split('T');
+        res.render("activities/edit", { user: userInSession, activity: activityToEdit, startDate: dateString[0] });
   });
 });
 

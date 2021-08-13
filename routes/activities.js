@@ -81,7 +81,6 @@ router.post(
       User.findById(user._id)
         .then((userFromDb) => {
           if (userFromDb) {
-
             let objectToCreate = {
               title: req.body.title,
               description: req.body.description,

@@ -66,7 +66,9 @@ router.post("/:activityId/book", isLoggedIn, (req, res, next) => {
 // To create an activity
 router.get("/create", isLoggedIn, (req, res) => {
   let userInSession = req.session.user;
-  res.render("activities/create", { user: userInSession });
+  let date = new Date(Date.now());
+  let dateArr = date.toISOString().split('T');
+  res.render("activities/create", { user: userInSession, date: dateArr[0] });
 });
 
 router.post(

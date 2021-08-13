@@ -39,12 +39,13 @@
             <a class="nav-link" href="/">Actitivies List</a>
          </li>
          <li class="nav-item">
-            {{#if user}}
             <a class="nav-link" href="/activities/create">Create</a>
-            {{/if}}
          </li>
          <li class="nav-item">
-            <a class="nav-link" href="/login">Login/Signup</a>
+            {{#if user}}
+            {{else}}
+               <a class="nav-link" href="/login">Login/Signup</a>
+            {{/if}}
          </li>
          <li class="nav-item">
             {{#if user}}
